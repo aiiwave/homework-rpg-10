@@ -1,5 +1,7 @@
 
 
+
+
 package com.narxoz.rpg.quest;
 
 import java.util.ArrayList;
