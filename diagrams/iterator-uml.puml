@@ -1,0 +1,48 @@
+@startuml
+title Iterator Pattern - Quest System
+
+interface QuestIterator {
+  +hasNext(): boolean
+  +next(): Quest
+}
+
+class QuestLog {
+  -quests: List<Quest>
+  +addQuest(quest: Quest): void
+  +orderedIterator(): QuestIterator
+  +reverseIterator(): QuestIterator
+  +priorityIterator(minPriority: QuestPriority): QuestIterator
+  +rewardSortedIterator(): QuestIterator
+}
+
+class Quest {
+  -title: String
+  -priority: QuestPriority
+  -reward: int
+  +getTitle(): String
+  +getPriority(): QuestPriority
+  +getReward(): int
+}
+
+enum QuestPriority {
+  LOW
+  MEDIUM
+  HIGH
+  LEGENDARY
+}
+
+class OrderedQuestIterator
+class ReverseQuestIterator
+class PriorityQuestIterator
+class RewardSortedQuestIterator
+
+QuestIterator <|.. OrderedQuestIterator
+QuestIterator <|.. ReverseQuestIterator
+QuestIterator <|.. PriorityQuestIterator
+QuestIterator <|.. RewardSortedQuestIterator
+
+QuestLog o-- Quest
+Quest --> QuestPriority
+QuestLog ..> QuestIterator : creates
+
+@enduml
